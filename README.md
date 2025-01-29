@@ -76,11 +76,45 @@ After running the server, open your browser and go to:
 ```
 http://127.0.0.1:8000/
 ```
+# API Documentation
+
+## Endpoint URL
+
+```
+http://127.0.0.1:8000/api/hng/
+```
+If Deployed:
+
+```
+DOMAIN/api/hng/
+```
+
+## Response Format.
+
+All requests and responses use JSON format.
+
+### Example Usage
+
+#### Fetch Data from API Endpoint
+```
+curl -X GET http://127.0.0.1:8000/api/hng/
+```
+
+Response
+
+```
+{
+  "email": "your-email@example.com",
+  "current_datetime": "2025-01-30T09:30:00Z",
+  "github_url": "<https://github.com/yourusername/your-repo>"
+}
+```
 
 ## Additional Notes
 
 - Ensure you are inside the virtual environment whenever running Django commands.
 - If you face any issues, ensure all dependencies are correctly installed.
+- Hey, if you want to hire a reliable python developer go to [HNG Developer](https://hng.tech/hire/python-developers)
 
 ## License
 
@@ -88,5 +122,5 @@ This project is open-source and available under the [MIT License](LICENSE).
 
 ---
 
-Happy coding! 🚀
+
 
