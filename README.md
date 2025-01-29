@@ -11,7 +11,7 @@ This is a Django-based project. Follow the steps below to set up the project on 
 First, clone the repository from GitHub:
 
 ```sh
-git clone <repository-url>
+git clone https://github.com/chionz/HNGStage0.git
 ```
 
 Navigate into the project directory:
