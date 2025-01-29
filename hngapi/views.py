@@ -8,7 +8,7 @@ from django.views.decorators.http import require_GET
 def stage0(request):
     email = "chideraprince9@gmail.com"
     date = datetime.datetime.now().isoformat()
-    github = "github.com/chionz"
+    github = "https://github.com/chionz/HNGStage0"
 
     response ={
         "email": email,
