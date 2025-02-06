@@ -30,14 +30,15 @@ def stage0(request):
 def classify_number(request):
     tempnumber = request.GET.get('number')
     
-    if not tempnumber or (not tempnumber.lstrip('-').isdigit()):
+    # Check if the input is a valid integer (including negative numbers)
+    if not tempnumber or not tempnumber.lstrip('-').isdigit():
         return JsonResponse({
             "number": "alphabet",
-            "error": True }, status=400)
+            "error": True
+        }, status=400)
 
-    number = int(tempnumber.lstrip('-'))
-
-    has_neg = f'{tempnumber}'.startswith("-")
+    number = int(tempnumber)  # Keep the number as it is (including negative sign)
+    
     def is_prime(n):
         if n < 2:
             return False
@@ -46,39 +47,39 @@ def classify_number(request):
                 return False
         return True
 
-   
     def is_perfect(n):
+        if n < 1:
+            return False  # No negative perfect numbers
         divisors = [i for i in range(1, n) if n % i == 0]
         return sum(divisors) == n
 
- 
     def is_armstrong(n):
-        digits = [int(d) for d in str(n)]
-        return sum([d ** len(digits) for d in digits]) == n
+        digits = [int(d) for d in str(abs(n))]  # Use absolute value for Armstrong check
+        return sum([d ** len(digits) for d in digits]) == abs(n)
 
-  
-    digit_sum = sum(int(d) for d in str(number))
+    digit_sum = sum(int(d) for d in str(abs(number)))  # Sum digits of the absolute value
 
-   
-    response = requests.get(f"http://numbersapi.com/{tempnumber}")
-    print(response)
-    fun_fact = response.text if response.status_code == 200 else "No fun fact available."
+    # Get a fun fact about the number
+    try:
+        response = requests.get(f"http://numbersapi.com/{tempnumber}")
+        fun_fact = response.text if response.status_code == 200 else "No fun fact available."
+    except requests.RequestException:
+        fun_fact = "Fun fact not available due to a connection error."
 
-    print(has_neg, "descript")
-   
+    # Prepare the result
     result = {
-        "number": tempnumber,
+        "number": number,
         "is_prime": is_prime(number),
         "is_perfect": is_perfect(number),
         "properties": [
             "armstrong" if is_armstrong(number) else None,
             "odd" if number % 2 != 0 else "even"
         ],
-        "digit_sum": digit_sum if not has_neg else None,
+        "digit_sum": digit_sum,
         "fun_fact": fun_fact
     }
 
-   
+    # Remove None values from properties
     result["properties"] = [prop for prop in result["properties"] if prop]
 
     return JsonResponse(result)
