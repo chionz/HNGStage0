@@ -37,7 +37,7 @@ def classify_number(request):
 
     number = int(tempnumber.lstrip('-'))
 
-    has_neg = f'tempnumber'.startswith("-")
+    has_neg = f'{tempnumber}'.startswith("-")
     def is_prime(n):
         if n < 2:
             return False
@@ -64,6 +64,7 @@ def classify_number(request):
     print(response)
     fun_fact = response.text if response.status_code == 200 else "No fun fact available."
 
+    print(has_neg, "descript")
    
     result = {
         "number": tempnumber,
@@ -73,7 +74,7 @@ def classify_number(request):
             "armstrong" if is_armstrong(number) else None,
             "odd" if number % 2 != 0 else "even"
         ],
-        "digit_sum": digit_sum,
+        "digit_sum": digit_sum if not has_neg else None,
         "fun_fact": fun_fact
     }
 
