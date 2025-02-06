@@ -60,12 +60,13 @@ def classify_number(request):
     digit_sum = sum(int(d) for d in str(number))
 
    
-    response = requests.get(f"http://numbersapi.com/{('-' if has_neg else '')}{number}")
+    response = requests.get(f"http://numbersapi.com/{tempnumber}")
+    print(response)
     fun_fact = response.text if response.status_code == 200 else "No fun fact available."
 
    
     result = {
-        "number": number,
+        "number": tempnumber,
         "is_prime": is_prime(number),
         "is_perfect": is_perfect(number),
         "properties": [

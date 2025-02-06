@@ -81,12 +81,12 @@ http://127.0.0.1:8000/
 ## Endpoint URL
 
 ```
-http://127.0.0.1:8000/api/hng/
+http://127.0.0.1:8000/api/classify-number
 ```
 If Deployed:
 
 ```
-DOMAIN/api/hng/
+DOMAIN/api/classify-number
 ```
 
 ## Response Format.
@@ -97,18 +97,30 @@ All requests and responses use JSON format.
 
 #### Fetch Data from API Endpoint
 ```
-curl -X GET http://127.0.0.1:8000/api/hng/
+curl -X GET http://127.0.0.1:8000/api/classify-number
 ```
 
-Response
+Success Response (200 OK)
 
 ```
 {
-  "email": "your-email@example.com",
-  "current_datetime": "2025-01-30T09:30:00Z",
-  "github_url": "<https://github.com/yourusername/your-repo>"
+  "number": 371,
+  "is_prime": false,
+  "is_perfect": false,
+  "properties": ["armstrong", "odd"],
+  "digit_sum": 11,
+  "fun_fact": "371 is an Armstrong number because 3^3 + 7^3 + 1^3 = 371"
 }
 ```
+Error Response (400 Bad Request)
+
+```
+{
+  "number": "alphabet",
+  "error": true
+}
+```
+
 
 ## Additional Notes
 
