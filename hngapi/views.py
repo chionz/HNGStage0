@@ -33,7 +33,7 @@ def classify_number(request):
     if not tempnumber or (not tempnumber.lstrip('-').isdigit()):
         return JsonResponse({
             "number": "alphabet",
-            "error": "true"}, status=400)
+            "error": True }, status=400)
 
     number = int(tempnumber.lstrip('-'))
 
