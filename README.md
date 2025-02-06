@@ -1,39 +1,33 @@
-# HNG12 Stage 1 API - **Number Classification API**
+# 📊 Number Classification API  
 
-An API that classifies numbers based on mathematical properties and provides a fun fact about them.
+A simple RESTful API that accepts a number as input and returns interesting mathematical properties along with a fun fact, powered by [Numbers API](http://numbersapi.com/#42).  
 
-## **Features**
+---
 
-- Determines if a number is **prime**, **perfect**, or an **Armstrong number**.
-- Classifies numbers as **odd** or **even**.
-- Computes the **sum of the digits** of a number.
-- Fetches a **fun fact** from the [Numbers API](http://numbersapi.com/).
-- Returns structured **JSON responses**.
+## 🚀 Features  
+- Classifies numbers with properties such as **prime**, **perfect**, **Armstrong**, **odd/even**, and **digit sum**.  
+- Provides a fun fact about the number using the Numbers API.  
+- Handles **negative numbers** and validates inputs.  
+- Returns JSON responses with appropriate status codes.  
 
-## **Live Demo**
+---
 
-🚀 **Base URL:**
+## 🛠️ Technology Stack  
+- **Language:** Python 🐍  
+- **Framework:** Django + Django REST Framework (DRF)  
+- **Deployment:** Publicly accessible endpoint (e.g., Vercel, Heroku, or Render)  
+- **Others:** CORS handling, JSON responses  
 
-```
-https://oderapg.pythonanywhere.com
-```
+---
 
-## **API Documentation**
+## 📢 API Documentation  
 
-### **Endpoint:**
+### **Endpoint:**  
+`GET <your-domain.com>/api/classify-number?number=<integer>`  
 
-```
-GET /api/classify-number?number={number}
-```
+### **Response Formats:**  
 
-### **Example Request**
-
-```bash
-curl -X GET "https://oderapg.pythonanywhere.com/api/classify-number?number=371"
-```
-
-### **Successful Response (200 OK)**
-
+#### ✅ **200 OK (Valid Number)**  
 ```json
 {
   "number": 371,
@@ -45,85 +39,102 @@ curl -X GET "https://oderapg.pythonanywhere.com/api/classify-number?number=371"
 }
 ```
 
-### **Error Response (400 Bad Request)**
-
+#### ❌ **400 Bad Request (Invalid Input)**  
 ```json
 {
   "number": "alphabet",
   "error": true
 }
 ```
-## Installation Guide
 
-### 1. Clone the Repository
+---
 
-First, clone the repository from GitHub:
+## 💻 Installation and Setup  
 
-```sh
-git clone https://github.com/chionz/HNGStage0.git
+### **Step 1: Clone the Repository**  
+```bash
+git clone https://github.com/chionz/HNGStage0"
+cd <project directory>
 ```
 
-Navigate into the project directory:
-
-```sh
-cd <project-directory>
+### **Step 2: Set Up a Virtual Environment**  
+```bash
+python -m venv venv
+source venv/bin/activate  # macOS/Linux
+.\venv\Scripts\activate   # Windows
 ```
 
-### 2. Set Up a Virtual Environment
-
-Create a virtual environment to manage dependencies:
-
-```sh
-python -m venv .venv
-```
-
-### 3. Activate the Virtual Environment
-
-Activate the virtual environment using the appropriate command for your operating system:
-
-- **Windows (Command Prompt):**
-  ```sh
-  .venv\Scripts\activate
-  ```
-- **Windows (PowerShell):**
-  ```sh
-  .venv\Scripts\Activate.ps1
-  ```
-- **Linux/macOS:**
-  ```sh
-  source .venv/bin/activate
-  ```
-
-### 4. Install Dependencies
-
-Once the virtual environment is activated, install the required dependencies:
-
-```sh
+### **Step 3: Install Dependencies**  
+```bash
 pip install -r requirements.txt
 ```
 
-### 5. Install Django (Optional)
-
-If Django is not installed, you can install it manually:
-
-```sh
-pip install django
+### **Step 4: Run Migrations**  
+```bash
+python manage.py migrate
 ```
 
-### 6. Run the Django Development Server
-
-To start the Django development server, run:
-
-```sh
+### **Step 5: Start the Server**  
+```bash
 python manage.py runserver
 ```
 
-## Deployment
+---
 
-This API is deployed on **Railway**. Any changes pushed to the main branch automatically redeploy the project.
+## 🧪 Testing the API  
 
+Once the server is running, you can test the API using:  
+- **Postman** or **cURL**  
+- Your browser: `http://127.0.0.1:8000/api/classify-number?number=371` 
+ or `domain.com/api/classify-number?number=371` if deployed 
 
+---
 
+## 🌐 Deployment  
+
+The API is hosted at: https://oderapg.pythonanywhere.com
+
+---
+
+## 📝 Project Structure  
+```
+number-classification-api/
+    ├── manage.py          # Django project entry point
+    ├── requirements.txt   # Project dependencies
+    ├── api/               # API application containing views, serializers, and URLs
+    ├── settings.py        # Django settings for the project
+    └── README.md          # Documentation
+```
+
+---
+
+## 🚦 Acceptance Criteria Checklist  
+
+- [x] Accepts GET requests with a number parameter  
+- [x] Returns JSON in the specified format  
+- [x] Handles valid and invalid inputs properly  
+- [x] Provides accurate HTTP status codes  
+- [x] Hosted on a public endpoint  
+
+---
+
+## 🧑‍💻 Author  
+**[Your Name](https://github.com/chionz)**  
+
+---
+
+## 📄 License  
+This project is licensed under the MIT License.  
+
+---
+
+## 📚 Resources  
+- [Numbers API](http://numbersapi.com/#42)  
+- [Parity in Mathematics](https://en.wikipedia.org/wiki/Parity_(mathematics))  
+
+---
+
+Want me to customize this further? Just let me know! 😊
 ## Additional Note
 
 - API responds in **<500ms**.
