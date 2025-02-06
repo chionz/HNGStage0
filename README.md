@@ -53,7 +53,7 @@ A simple RESTful API that accepts a number as input and returns interesting math
 
 ### **Step 1: Clone the Repository**  
 ```bash
-git clone https://github.com/chionz/HNGStage0"
+git clone https://github.com/chionz/HNGStage0.git"
 cd <project directory>
 ```
 
