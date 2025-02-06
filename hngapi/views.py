@@ -28,14 +28,16 @@ def stage0(request):
 
 @require_GET
 def classify_number(request):
-    number = request.GET.get('number')
+    tempnumber = request.GET.get('number')
     
-    if not number or not number.isdigit():
-        return JsonResponse({"error": "Please provide a valid number."}, status=400)
+    if not tempnumber or (not tempnumber.lstrip('-').isdigit()):
+        return JsonResponse({
+            "number": "alphabet",
+            "error": "true"}, status=400)
 
-    number = int(number)
+    number = int(tempnumber.lstrip('-'))
 
-   
+    has_neg = f'tempnumber'.startswith("-")
     def is_prime(n):
         if n < 2:
             return False
@@ -58,7 +60,7 @@ def classify_number(request):
     digit_sum = sum(int(d) for d in str(number))
 
    
-    response = requests.get(f"http://numbersapi.com/{number}")
+    response = requests.get(f"http://numbersapi.com/{('-' if has_neg else '')}{number}")
     fun_fact = response.text if response.status_code == 200 else "No fun fact available."
 
    
